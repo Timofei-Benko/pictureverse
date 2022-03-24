@@ -4,8 +4,11 @@ export const CREATE_USER = gql`
     mutation CreateUser($input: CreateUserInput!) {
         createUser(input: $input) {
             ... on User {
-                name
                 email
+                name
+            }
+            ... on EmailRegisteredError {
+                message
             }
         }
     }

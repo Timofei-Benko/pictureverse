@@ -2144,6 +2144,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/next@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@types/next@npm:9.0.0"
+  dependencies:
+    next: "*"
+  checksum: 3115931293e1928df5ecd9d0cbf8b9edc9e2d7f67467db468f3d92dac7b44199706dbd4226c33193a7fcd3fe230a1ec2c796a1a585911d40be9fdaf47e8cb16e
+  languageName: node
+  linkType: hard
+
 "@types/node-fetch@npm:^2.5.10":
   version: 2.6.1
   resolution: "@types/node-fetch@npm:2.6.1"
@@ -5970,7 +5979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:12.1.0":
+"next@npm:*, next@npm:12.1.0":
   version: 12.1.0
   resolution: "next@npm:12.1.0"
   dependencies:
@@ -6502,6 +6511,7 @@ __metadata:
   dependencies:
     "@apollo/client": ^3.5.10
     "@svgr/webpack": ^6.2.1
+    "@types/next": ^9.0.0
     "@types/node": 17.0.21
     "@types/react": 17.0.40
     apollo: ^2.33.9

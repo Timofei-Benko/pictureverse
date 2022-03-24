@@ -9,17 +9,18 @@ import { CreateUserInput } from "./../../__generated__/globalTypes";
 // GraphQL mutation operation: CreateUser
 // ====================================================
 
-export interface CreateUser_createUser_EmailRegisteredError {
-  __typename: "EmailRegisteredError";
-}
-
 export interface CreateUser_createUser_User {
   __typename: "User";
-  name: string | null;
   email: string | null;
+  name: string | null;
 }
 
-export type CreateUser_createUser = CreateUser_createUser_EmailRegisteredError | CreateUser_createUser_User;
+export interface CreateUser_createUser_EmailRegisteredError {
+  __typename: "EmailRegisteredError";
+  message: string | null;
+}
+
+export type CreateUser_createUser = CreateUser_createUser_User | CreateUser_createUser_EmailRegisteredError;
 
 export interface CreateUser {
   createUser: CreateUser_createUser;

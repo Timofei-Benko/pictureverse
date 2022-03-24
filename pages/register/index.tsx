@@ -1,35 +1,56 @@
 import type { NextPage } from 'next';
-import { useCallback, useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
-import { Credentials } from '../../components/Credentials';
+import { useRouter } from 'next/router';
+import { FormEvent, useCallback, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { Form } from '../../components/Form';
 import { CREATE_USER } from '../../queries/CreateUser';
 import { CreateUser, CreateUserVariables } from '../../queries/__generated__/CreateUser';
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [createUser, { data, loading, error }] = useMutation<CreateUser, CreateUserVariables>(CREATE_USER, {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
+  const [createUser] = useMutation<CreateUser, CreateUserVariables>(CREATE_USER, {
     variables: {
       input: {
         email,
         password,
       },
     },
+    onCompleted: async ({ createUser }) => {
+      if ('message' in createUser && createUser.message) {
+        setErrorMessage(createUser.message);
+      } else {
+        await router.push('/login');
+      }
+    }
   })
 
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(async (e: FormEvent) => {
+    e.preventDefault();
     await createUser();
   }, [createUser])
 
   return (
-    <Credentials
+    <Form
       title='Sign Up'
-      email={email}
-      password={password}
-      setEmail={setEmail}
-      setPassword={setPassword}
       onSubmit={handleSubmit}
-    />
+      errorMessage={errorMessage}
+    >
+      <Form.Input
+        type='email'
+        placeholder='Email'
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Form.Input
+        type='password'
+        placeholder='Password'
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+    </Form>
   );
 };
 

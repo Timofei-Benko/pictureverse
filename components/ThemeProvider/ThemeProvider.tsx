@@ -1,6 +1,9 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { initState } from '../../hooks/useThemeProviderReducer';
 
 export const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
+  const ThemeContext = createContext(initState);
+
   useEffect(() => {
     const theme = localStorage.getItem('theme');
     const body = document.querySelector('body');
@@ -16,5 +19,9 @@ export const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
     body!.classList.add(themeColor);
   }, [])
 
-  return <>{children}</>;
+  return (
+    <ThemeContext.Provider value={initState}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
