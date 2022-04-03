@@ -1,6 +1,4 @@
 import { FormEvent, InputHTMLAttributes, PropsWithChildren } from 'react';
-import { ApolloError } from '@apollo/client';
-import cn from 'classnames';
 
 import styles from './Form.module.sass';
 
@@ -38,10 +36,7 @@ export const Form = ({ title, onSubmit, children, errorMessage }: PropsWithChild
 
 const Input = (props: InputHTMLAttributes<HTMLInputElement>) => {
   return (
-    <input
-      className={styles.input}
-      { ...props }
-    />
+    <input className={styles.input} { ...props } />
   )
 }
 

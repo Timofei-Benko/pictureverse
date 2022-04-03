@@ -1,8 +1,12 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { ThemeProvider } from '../components/ThemeProvider';
-import { AppLayout } from '../components/AppLayout';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { Provider } from 'react-redux';
+import { DetectAuthorization } from '../components/DetectAuthorization';
+import { AppLayout } from '../components/AppLayout';
+import { store } from '../redux/store';
+
+import '../styles/globals.css';
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:6969/graphql',
@@ -12,11 +16,13 @@ const client = new ApolloClient({
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider>
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
-      </ThemeProvider>
+      <Provider store={store}>
+        <DetectAuthorization>
+          <AppLayout>
+              <Component {...pageProps} />
+          </AppLayout>
+        </DetectAuthorization>
+      </Provider>
     </ApolloProvider>
   );
 }

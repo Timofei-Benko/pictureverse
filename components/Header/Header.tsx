@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 import cn from 'classnames';
-import { Navigation } from './components/Navigation';
-import { Switch } from './components/Switch';
 
 import styles from './Header.module.sass';
 
@@ -19,8 +17,6 @@ export const Header = () => {
           <div className={styles.logoContainer}>
             <span className={styles.logo}>Pictureverse</span>
           </div>
-          <Navigation />
-          <Switch />
         </div>
       </div>
     </div>
