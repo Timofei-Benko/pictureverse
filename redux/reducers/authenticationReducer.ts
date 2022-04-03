@@ -1,7 +1,11 @@
 const SET_IS_AUTHENTICATED = 'SET_IS_AUTHENTICATED';
+const SET_USER_INFORMATION = 'SET_USER_INFORMATION';
 
 type TAction = {
   type: typeof SET_IS_AUTHENTICATED,
+  payload: string,
+} | {
+  type: typeof SET_USER_INFORMATION,
   payload: string,
 }
 
@@ -16,6 +20,9 @@ export const authenticationReducer = (state = initState, { type, payload }: TAct
         ...state,
         isAuthenticated: payload,
       };
+    }
+    case SET_USER_INFORMATION: {
+
     }
     default:
       return state;
