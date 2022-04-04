@@ -24,17 +24,16 @@ const Login: NextPage = () => {
         password,
       }
     },
-    onCompleted: async ({ validateUserCredantials}) => {
-      if (validateUserCredantials.valid) {
-        console.log(true);
+    onCompleted: async ({ validateUserCredantials }) => {
+      if ('id' in validateUserCredantials) {
         localStorage.setItem('isAuthenticated', '1')
         dispatch({
           type: 'SET_IS_AUTHENTICATED',
           payload: true,
         });
         await router.push('/', { pathname: '/'});
-      } else {
-        setErrorMessage('Incorrect email or password')
+      } else if ('message' in validateUserCredantials) {
+        setErrorMessage(validateUserCredantials.message)
       }
     }
   });

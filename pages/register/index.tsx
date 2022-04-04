@@ -19,7 +19,8 @@ const Login: NextPage = () => {
       },
     },
     onCompleted: async ({ createUser }) => {
-      if ('message' in createUser && createUser.message) {
+      // TODO: decide on a better way to deal with these union types (e.g. type guards)
+      if ('message' in createUser) {
         setErrorMessage(createUser.message);
       } else {
         await router.push('/login');
