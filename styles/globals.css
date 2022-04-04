@@ -1,40 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --clr-primary: #f5e7df;
   --clr-secondary: #0a1347;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: inherit;
+/** {*/
+/*  box-sizing: border-box;*/
+/*  font-family: inherit;*/
+/*}*/
+
+/*html,*/
+/*body {*/
+/*  padding: 0;*/
+/*  margin: 0;*/
+/*  background-color: var(--clr-primary);*/
+/*}*/
+
+/*body {*/
+/*  font-family: Hubballi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,*/
+/*  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
+/*}*/
+
+/*a {*/
+/*  color: inherit;*/
+/*  text-decoration: none;*/
+/*}*/
+
+/*a:visited {*/
+/*  color: inherit;*/
+/*}*/
+
+/*ul {*/
+/*  list-style: none;*/
+/*}*/
+
+@layer base {
+  body {
+    font-family: Hubballi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: var(--clr-primary);
+  }
+
+  * {
+    font-family: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: inherit;
+  }
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  background-color: var(--clr-primary);
-}
+@layer utilities {
+  .page-wrap {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+  }
 
-body {
-  font-family: Hubballi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-a:visited {
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-.pageContainer {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1440px;
+  .logo {
+    font-weight: 700;
+    line-height: 56px;
+    font-size: 56px;
+    color: var(--clr-primary);
+    text-shadow: -4px 3px 0px var(--clr-secondary);
+  }
 }
