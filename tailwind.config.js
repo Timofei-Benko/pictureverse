@@ -4,12 +4,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      primary: '#f5e7df',
-      secondary: '#0a1347',
-    },
-    borderWidth: {
-      '3': '3px',
+    extend: {
+      colors: {
+        primary: '#f5e7df',
+        secondary: '#0a1347',
+      },
+      borderWidth: {
+        '3': '3px',
+      },
     },
   },
   plugins: [],

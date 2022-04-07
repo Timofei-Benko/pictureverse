@@ -1,11 +1,14 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-
-import styles from './Dropdown.module.sass';
 import { TRootState } from '../../../redux/store';
+import { config } from './config';
+
+const ROUTES_WO_DROPDOWN = [
+  '/register',
+  '/login'
+];
 
 export const Dropdown = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,24 +26,44 @@ export const Dropdown = () => {
     await router.push('/login');
   };
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated || ROUTES_WO_DROPDOWN.includes(router.pathname)) return null;
 
   return (
-    <div className={styles.root}>
-      <button className={styles.username} onClick={handleUsernameClick}>aboba</button>
-      <ul className={cn(
-        styles.dropdown,
-        { [styles.visible]: isVisible }
-      )}>
-        <li className={styles.dropdownItem}>
-          <Link href='/profile'>Profile</Link>
-        </li>
-        <li className={styles.dropdownItem}>
-          <Link href='/settings'>Settings</Link>
-        </li>
-        <button className={styles.dropdownItem} onClick={handleSignOut}>
-          Sign Out
-        </button>
+    <div className='relative ml-auto'>
+      <button
+        className='relative z-10 p-1 text-2xl text-secondary bg-primary border-none outline-none cursor-pointer'
+        onClick={handleUsernameClick}
+      >
+        aboba
+      </button>
+      <ul className={
+        `${isVisible ? 'block' : 'hidden'} absolute top-1/2 left-2/4 -translate-x-1/2 min-w-[150px] pt-8 px-4 pb-4 
+        text-center bg-primary border-2 border-secondary`
+      }>
+        {config.map(({type, href, name}, i) => {
+          if (type === 'link' && href) {
+            return (
+              <li
+                key={i}
+                className=
+                  'p-0 text-2 whitespace-nowrap cursor-pointer hover:underline mb-4 last:mb-0'
+              >
+                <Link href={href}>{name}</Link>
+              </li>
+            );
+          } else if (type === 'button') {
+            return (
+              <button
+                key={i}
+                className='p-0 text-2 bg-transparent border-none outline-none whitespace-nowrap cursor-pointer
+                hover:underline mb-4 last:mb-0'
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
+            )
+          }
+        })}
       </ul>
     </div>
   );
