@@ -21,9 +21,6 @@ export const authenticationReducer = (state = initState, { type, payload }: TAct
         isAuthenticated: payload,
       };
     }
-    case SET_USER_INFORMATION: {
-
-    }
     default:
       return state;
   }

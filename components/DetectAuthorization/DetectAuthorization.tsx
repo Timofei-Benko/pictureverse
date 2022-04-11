@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { PropsWithChildren, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { setIsAuthenticated } from '../../redux/actionCreators';
 
 const GUEST_AVAILABLE_ROUTES = [
   '/login',
@@ -14,18 +15,14 @@ export const DetectAuthorization = ({ children }: PropsWithChildren<{}>) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isAuthenticated = !!Number(localStorage.getItem('isAuthenticated'));
-    console.log(router.pathname);
+    const isAuthenticated = !!Number(localStorage.getItem('isAuthenticated')) && !!(localStorage.getItem('userId'));
 
     if (!isAuthenticated && !GUEST_AVAILABLE_ROUTES.includes(router.pathname)) {
       router.push('/login');
     } else if (isAuthenticated) {
-      dispatch({
-        type: 'SET_IS_AUTHENTICATED',
-        payload: true,
-      });
+      dispatch(setIsAuthenticated(true));
     }
-  }, []);
+  }, [dispatch, router]);
 
   return <>{ children }</>;
 };

@@ -7,8 +7,7 @@ import { store } from '../redux/store';
 
 import '../styles/globals.css';
 
-
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: 'http://localhost:6969/graphql',
   cache: new InMemoryCache(),
 });

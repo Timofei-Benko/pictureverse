@@ -9,6 +9,7 @@ import {
   ValidateUserCredantials,
   ValidateUserCredantialsVariables
 } from '../../queries/__generated__/ValidateUserCredantials';
+import { setIsAuthenticated } from '../../redux/actionCreators';
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState('');
@@ -25,12 +26,10 @@ const Login: NextPage = () => {
       }
     },
     onCompleted: async ({ validateUserCredantials }) => {
-      if ('id' in validateUserCredantials) {
-        localStorage.setItem('isAuthenticated', '1')
-        dispatch({
-          type: 'SET_IS_AUTHENTICATED',
-          payload: true,
-        });
+      if ('id' in validateUserCredantials && validateUserCredantials.id) {
+        localStorage.setItem('isAuthenticated', '1');
+        localStorage.setItem('userInfo', validateUserCredantials.id);
+        dispatch(setIsAuthenticated(true));
         await router.push('/', { pathname: '/'});
       } else if ('message' in validateUserCredantials) {
         setErrorMessage(validateUserCredantials.message)

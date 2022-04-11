@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRootState } from '../../../redux/store';
+import { setIsAuthenticated } from '../../../redux/actionCreators';
 import { config } from './config';
 
 const ROUTES_WO_DROPDOWN = [
@@ -17,16 +18,26 @@ export const Dropdown = () => {
   const { isAuthenticated } = useSelector((state: TRootState) => state.authentication);
 
   const handleUsernameClick = () => setIsVisible(prev => !prev);
+
+  const handleSignIn = () => router.push('/login');
+
   const handleSignOut = async () => {
-    dispatch({
-      type: 'SET_IS_AUTHENTICATED',
-      payload: false,
-    });
+    dispatch(setIsAuthenticated(false));
     localStorage.setItem('isAuthenticated', '0');
+    localStorage.removeItem('userId');
     await router.push('/login');
   };
 
-  if (!isAuthenticated || ROUTES_WO_DROPDOWN.includes(router.pathname)) return null;
+  if (ROUTES_WO_DROPDOWN.includes(router.pathname)) return null;
+
+  if (!isAuthenticated) return (
+    <button
+      className='relative z-10 ml-auto p-1 text-2xl text-secondary bg-primary border-none outline-none cursor-pointer'
+      onClick={handleSignIn}
+    >
+      Sign In
+    </button>
+  )
 
   return (
     <div className='relative ml-auto'>
