@@ -2,45 +2,48 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { TRootState } from '../../../redux/store';
-import { setIsAuthenticated } from '../../../redux/actionCreators';
 import { config } from './config';
+import { TRootState } from '../../../redux/store';
+import { setUser } from '../../../redux/actionCreators';
+import { routes } from '../../../constants/routes';
 
 const ROUTES_WO_DROPDOWN = [
-  '/register',
-  '/login'
+  routes.register,
+  routes.login,
 ];
 
 export const Dropdown = () => {
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state: TRootState) => state.authentication);
+  const user = useSelector((state: TRootState) => state.user);
 
   const handleUsernameClick = () => setIsVisible(prev => !prev);
 
   const handleSignIn = () => router.push('/login');
 
   const handleSignOut = async () => {
-    dispatch(setIsAuthenticated(false));
-    localStorage.setItem('isAuthenticated', '0');
-    localStorage.removeItem('userId');
-    await router.push('/login');
+    dispatch(setUser({
+      ...user,
+      isAuthenticated: false,
+    }));
+    localStorage.removeItem('user');
+    await router.push(routes.login);
   };
 
   if (ROUTES_WO_DROPDOWN.includes(router.pathname)) return null;
 
-  if (!isAuthenticated) return (
+  if (!user.isAuthenticated) return (
     <button
-      className='relative z-10 ml-auto p-1 text-2xl text-secondary bg-primary border-none outline-none cursor-pointer'
+      className='relative z-10 ml-auto button'
       onClick={handleSignIn}
     >
-      Sign In
+      sign in
     </button>
   )
 
   return (
-    <div className='relative ml-auto'>
+    <div className='relative ml-16'>
       <button
         className='relative z-10 p-1 text-2xl text-secondary bg-primary border-none outline-none cursor-pointer'
         onClick={handleUsernameClick}
@@ -70,7 +73,7 @@ export const Dropdown = () => {
                 hover:underline mb-4 last:mb-0'
                 onClick={handleSignOut}
               >
-                Sign Out
+                {name}
               </button>
             )
           }

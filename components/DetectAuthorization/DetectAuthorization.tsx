@@ -1,27 +1,31 @@
+import React, { PropsWithChildren, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { PropsWithChildren, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setIsAuthenticated } from '../../redux/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../redux/actionCreators';
+import { routes } from '../../constants/routes';
 
 const GUEST_AVAILABLE_ROUTES = [
-  '/login',
-  '/register',
-  '/feed',
-  '/'
+  routes.login,
+  routes.register,
+  routes.feed,
+  routes.home
 ]
 
-export const DetectAuthorization = ({ children }: PropsWithChildren<{}>) => {
+export const DetectAuthorization: React.FC = ({ children }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isAuthenticated = !!Number(localStorage.getItem('isAuthenticated')) && !!(localStorage.getItem('userId'));
+    const redirectToLogin = () => router.push('/login');
+    const userJSON = localStorage.getItem('user');
 
-    if (!isAuthenticated && !GUEST_AVAILABLE_ROUTES.includes(router.pathname)) {
-      router.push('/login');
-    } else if (isAuthenticated) {
-      dispatch(setIsAuthenticated(true));
+    if (!userJSON && !GUEST_AVAILABLE_ROUTES.includes(router.pathname)) {
+      redirectToLogin();
+      return;
     }
+
+    const user = JSON.parse(userJSON as string);
+    dispatch(setUser({ ...user }));
   }, [dispatch, router]);
 
   return <>{ children }</>;

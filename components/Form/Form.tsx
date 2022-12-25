@@ -1,6 +1,5 @@
 import { FormEvent, InputHTMLAttributes, PropsWithChildren } from 'react';
-
-import styles from './Form.module.sass';
+import Link, { LinkProps } from 'next/link';
 
 interface IFormProps {
   title: string;
@@ -12,12 +11,12 @@ export const Form = ({ title, onSubmit, children, errorMessage }: PropsWithChild
   return (
     <div className='relative flex flex-col justify-center items-center h-full'>
       <form
-        className='relative flex flex-col justify-between items-center min-h-[270px] p-7 border-3 border-secondary
+        className='relative flex flex-col justify-between items-center min-h-[270px] max-w-md p-7 border-3 border-secondary
           shadow-[0_18px_0px_-10px] shadow-secondary'
         onSubmit={onSubmit}
       >
         <h1 className='absolute top-[-25px] px-2 text-5xl uppercase bg-primary'>{title}</h1>
-        <div className='relative self-center justify-self-center'>
+        <div className='relative self-center justify-self-center mb-5'>
           {children}
         </div>
         <input
@@ -27,7 +26,7 @@ export const Form = ({ title, onSubmit, children, errorMessage }: PropsWithChild
           value='Submit'
         />
         {!!errorMessage && (
-          <p className='absolute bottom-[90px] left-[27px] text-[1rem] text-red-500'>
+          <p className='absolute bottom-[120px] left-[27px] text-[1rem] text-red-500'>
             {errorMessage}
           </p>
         )}
@@ -39,11 +38,18 @@ export const Form = ({ title, onSubmit, children, errorMessage }: PropsWithChild
 const Input = (props: InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <input
-      { ...props }
       className='h-12 w-full p-3 mb-5 last:mb-0 text-[1rem] bg-transparent border-3 border-secondary bg-none
         placeholder:text-[1rem] placeholder:text-secondary'
+      {...props}
     />
   )
 }
 
+const BottomLink = ({ children, ...rest }: LinkProps & { children: string }) => {
+  return (
+    <Link {...rest}>{children}</Link>
+  )
+}
+
 Form.Input = Input;
+Form.BottomLink = BottomLink;

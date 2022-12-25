@@ -1,16 +1,18 @@
+import { routes } from '../../../constants/routes';
+
 export const config = [
   {
     type: 'link',
     href: '/profile',
-    name: 'Profile',
+    name: 'profile',
   },
   {
     type: 'link',
-    href: '/settings',
-    name: 'Settings',
+    href: routes.settings,
+    name: 'settings',
   },
   {
     type: 'button',
-    name: 'Sign out'
+    name: 'sign out'
   }
 ];

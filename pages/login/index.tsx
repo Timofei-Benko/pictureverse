@@ -9,7 +9,8 @@ import {
   ValidateUserCredantials,
   ValidateUserCredantialsVariables
 } from '../../queries/__generated__/ValidateUserCredantials';
-import { setIsAuthenticated } from '../../redux/actionCreators';
+import { setUser } from '../../redux/actionCreators';
+import { routes } from '../../constants/routes';
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState('');
@@ -27,9 +28,13 @@ const Login: NextPage = () => {
     },
     onCompleted: async ({ validateUserCredantials }) => {
       if ('id' in validateUserCredantials && validateUserCredantials.id) {
-        localStorage.setItem('isAuthenticated', '1');
-        localStorage.setItem('userInfo', validateUserCredantials.id);
-        dispatch(setIsAuthenticated(true));
+        const user = {
+          isAuthenticated: true,
+          userId: validateUserCredantials.id,
+        };
+
+        localStorage.setItem('user', JSON.stringify(user));
+        dispatch(setUser(user));
         await router.push('/', { pathname: '/'});
       } else if ('message' in validateUserCredantials) {
         setErrorMessage(validateUserCredantials.message)
@@ -60,6 +65,7 @@ const Login: NextPage = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <Form.BottomLink href={routes.register}>Don&apos;t have an account? Sign up</Form.BottomLink>
     </Form>
   );
 };

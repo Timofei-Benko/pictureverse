@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_PICTURES = gql`
-    query Pictures {
+    query GetPictures {
         pictures {
             id
             base64
@@ -9,11 +9,16 @@ export const GET_PICTURES = gql`
             likesCount
             likedBy {
                 id
+                name
+                email
             }
             comments {
+                id
                 text
                 author {
+                    id
                     name
+                    email
                 }
             }
             uploadDate

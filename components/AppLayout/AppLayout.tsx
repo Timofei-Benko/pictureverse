@@ -1,7 +1,7 @@
-import { PropsWithChildren } from 'react';
+import React from 'react';
 import { Header } from '../Header';
 
-export const AppLayout = ({ children }: PropsWithChildren<{}>) => {
+export const AppLayout: React.FC = ({ children }) => {
   return (
     <div className='grid grid-rows-[auto_1fr] h-screen'>
       <Header />

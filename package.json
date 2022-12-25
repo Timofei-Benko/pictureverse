@@ -49,5 +49,6 @@
   "bugs": {
     "url": "https://github.com/Timofei-Benko/pictureverse/issues"
   },
-  "homepage": "https://github.com/Timofei-Benko/pictureverse#readme"
+  "homepage": "https://github.com/Timofei-Benko/pictureverse#readme",
+  "packageManager": "yarn@3.2.1"
 }

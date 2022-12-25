@@ -3,39 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --clr-primary: #f5e7df;
+  --clr-primary: #fff;
   --clr-secondary: #0a1347;
 }
-
-/** {*/
-/*  box-sizing: border-box;*/
-/*  font-family: inherit;*/
-/*}*/
-
-/*html,*/
-/*body {*/
-/*  padding: 0;*/
-/*  margin: 0;*/
-/*  background-color: var(--clr-primary);*/
-/*}*/
-
-/*body {*/
-/*  font-family: Hubballi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,*/
-/*  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
-/*}*/
-
-/*a {*/
-/*  color: inherit;*/
-/*  text-decoration: none;*/
-/*}*/
-
-/*a:visited {*/
-/*  color: inherit;*/
-/*}*/
-
-/*ul {*/
-/*  list-style: none;*/
-/*}*/
 
 @layer base {
   body {
@@ -71,6 +41,45 @@
     line-height: 56px;
     font-size: 56px;
     color: var(--clr-primary);
-    text-shadow: -4px 3px 0px var(--clr-secondary);
+    text-shadow: -4px 3px 0 var(--clr-secondary);
+  }
+
+  .button {
+    padding: 0.25rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .input-file + label {
+    font-size: 1.5em;
+    color: var(--clr-secondary);
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  /*.input-file:focus + label,*/
+  /*.input-file + label:hover {*/
+  /*  background-color: red;*/
+  /*}*/
+
+  .like > svg {
+    display: none;
+  }
+
+  .like.liked > svg {
+    display: unset;
   }
 }

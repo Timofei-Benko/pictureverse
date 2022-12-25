@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#f5e7df',
-        secondary: '#0a1347',
+        primary: 'var(--clr-primary)',
+        secondary: 'var(--clr-secondary)',
       },
       borderWidth: {
         '3': '3px',
