@@ -7,16 +7,15 @@ import { TRootState } from '../../../redux/store';
 
 interface IUploadModalProps {
   isVisible: boolean;
-  setIsVisible: (isVisible: boolean) => void,
+  handleModalClose: () => void,
 }
 
 // TODO: add modal close btn
-export const UploadModal = ({isVisible, setIsVisible}: IUploadModalProps) => {
+export const UploadModal: React.FC<IUploadModalProps> = ({isVisible, handleModalClose }) => {
   const [description, setDescription] = useState<string | null>(null);
   const [uploadPicture] = useMutation<UploadPicture, UploadPictureVariables>(UPLOAD_PICTURE);
   const {userId} = useSelector((state: TRootState) => state.user);
 
-  const handleModalClose = () => setIsVisible(false);
   const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!userId) return;
 

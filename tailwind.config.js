@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         primary: 'var(--clr-primary)',
         secondary: 'var(--clr-secondary)',
+        accent: 'var(--clr-accent)'
       },
       borderWidth: {
         '3': '3px',

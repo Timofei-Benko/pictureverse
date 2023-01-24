@@ -42,9 +42,8 @@ const Login: NextPage = () => {
     }
   });
 
-  const handleSubmit = useCallback(async (e: FormEvent) => {
-    e.preventDefault();
-    await validateUserCredentials();
+  const handleSubmit = useCallback(async () => {
+    // await validateUserCredentials();
   }, [validateUserCredentials]);
 
   return (

@@ -3,83 +3,94 @@
 @tailwind utilities;
 
 :root {
-  --clr-primary: #fff;
-  --clr-secondary: #0a1347;
+    --clr-primary: #ffffff;
+    --clr-secondary: #0a1347;
+    --clr-accent: #dbfc3e;
 }
 
 @layer base {
-  body {
-    font-family: Hubballi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: var(--clr-primary);
-    color: var(--clr-secondary);
-  }
+    body {
+        font-family: Hubballi, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        height: 100vh;
+        background-color: var(--clr-primary);
+        color: var(--clr-secondary);
+    }
 
-  * {
-    font-family: inherit;
-  }
+    body #__next {
+        height: 100%;
+    }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+    * {
+        font-family: inherit;
+    }
 
-  a:visited {
-    color: inherit;
-  }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: inherit;
+    }
 }
 
 @layer utilities {
-  .page-wrap {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1440px;
-  }
+    .page-wrap {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1440px;
+    }
 
-  .logo {
-    font-weight: 700;
-    line-height: 56px;
-    font-size: 56px;
-    color: var(--clr-primary);
-    text-shadow: -4px 3px 0 var(--clr-secondary);
-  }
+    .outlined {
+        border: 3px solid var(--clr-secondary);
+        box-shadow: 5px 5px 0 var(--clr-secondary);
+    }
 
-  .button {
-    padding: 0.25rem;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
+    .logo {
+        font-weight: 700;
+        line-height: 56px;
+        font-size: 56px;
+        color: var(--clr-primary);
+        text-shadow: -4px 3px 0 var(--clr-secondary);
+    }
 
-  .input-file {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
+    .button {
+        padding: 0.25rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
 
-  .input-file + label {
-    font-size: 1.5em;
-    color: var(--clr-secondary);
-    background-color: transparent;
-    display: inline-block;
-    cursor: pointer;
-  }
+    .input-file {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
 
-  /*.input-file:focus + label,*/
-  /*.input-file + label:hover {*/
-  /*  background-color: red;*/
-  /*}*/
+    .input-file + label {
+        font-size: 1.5em;
+        color: var(--clr-secondary);
+        background-color: transparent;
+        display: inline-block;
+        cursor: pointer;
+    }
 
-  .like > svg {
-    display: none;
-  }
+    /*.input-file:focus + label,*/
+    /*.input-file + label:hover {*/
+    /*  background-color: red;*/
+    /*}*/
 
-  .like.liked > svg {
-    display: unset;
-  }
+    .like > svg {
+        display: none;
+    }
+
+    .like.liked > svg {
+        display: unset;
+    }
 }

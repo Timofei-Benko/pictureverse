@@ -50,7 +50,7 @@ export const PictureViewer = ({ data, error }: IPictures) => {
         return (
           <div key={id} className='flex flex-col p-6 mb-8 border-3 border-secondary border-3 border-secondary
           shadow-[25px_-25px_0px_-10px] shadow-secondary'>
-            <img src={`data:image/jpeg;base64,${base64}`}  alt="Uploaded picture"/>
+            <img src={`data:image/jpeg;base64,${base64}`}  alt="Uploaded picture" />
             <div className="flex flex-col gap-4 items-start">
               <div className="flex items-center">
                 {userId && (
