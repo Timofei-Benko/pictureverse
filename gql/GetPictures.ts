@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
+import { gql } from '../__generated__/gql';
 
-export const GET_PICTURES = gql`
+export const GET_PICTURES = gql(`
     query GetPictures {
         pictures {
             id
@@ -24,4 +24,4 @@ export const GET_PICTURES = gql`
             uploadDate
         }
     }
-`;
+`);

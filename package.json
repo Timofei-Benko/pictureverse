@@ -8,19 +8,23 @@
     "start": "next start",
     "lint": "next lint",
     "generate:schema": "npx apollo service:download --endpoint=http://localhost:6969/graphql graphql-schema.json",
-    "generate:types": "yarn run apollo client:codegen --localSchemaFile=graphql-schema.json --includes='queries/**/*.ts' --target=typescript"
+    "generate:types": "yarn run apollo client:codegen --localSchemaFile=graphql-schema.json --includes='queries/**/*.ts' --target=typescript",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
-    "graphql": "15.5.3",
+    "@apollo/client": "^3.7.9",
+    "graphql": "^16.6.0",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "^7.2.8",
     "redux": "^4.1.2",
-    "tailwind-merge": "^1.8.1"
+    "tailwind-merge": "^1.8.1",
+    "urql": "^3.0.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "3.1.0",
+    "@graphql-codegen/client-preset": "2.1.0",
     "@svgr/webpack": "^6.2.1",
     "@types/node": "17.0.21",
     "@types/react": "17.0.40",
@@ -30,16 +34,14 @@
     "classnames": "^2.3.1",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.6.0",
     "postcss": "^8.4.12",
     "sass": "^1.49.9",
     "tailwindcss": "^3.0.23",
     "typescript": "4.6.2"
   },
-  "resolutions": {
-    "graphql": "15.5.3"
-  },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
-  "main": "apollo.config.js",
+  "main": "./apollo.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Timofei-Benko/pictureverse.git"

@@ -50,7 +50,7 @@
     .logo {
         font-weight: 700;
         line-height: 56px;
-        font-size: 56px;
+        font-size: 48px;
         color: var(--clr-primary);
         text-shadow: -4px 3px 0 var(--clr-secondary);
     }

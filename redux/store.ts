@@ -10,7 +10,7 @@ declare global {
 
 let composeEnhancer = compose;
 if (typeof window !== 'undefined') {
-    composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+	composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 
 export type TRootState = ReturnType<typeof store.getState>;

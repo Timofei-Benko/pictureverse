@@ -1,0 +1,11 @@
+overwrite: true
+schema: "http://localhost:6969/graphql"
+documents: "gql/**/*.ts"
+generates:
+  ./__generated__/:
+    preset: "client"
+    presetConfig:
+      gqlTagName: "gql"
+    schema: './schema.graphql'
+    plugins: 
+      - "typescript"
